@@ -23,3 +23,11 @@ SELECT  location, date,population,total_cases, (total_cases/population)*100 Perc
 FROM `derano.CovidData.CovidDeaths`
 
 WHERE location = "Africa"
+
+-- Query to show the location and date with the highest ICU patients
+
+SELECT  location, date,icu_patients
+
+FROM `derano.CovidData.CovidDeaths`
+
+ORDER BY icu_patients DESC
