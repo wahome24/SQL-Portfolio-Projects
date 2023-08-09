@@ -31,3 +31,16 @@ SELECT  location, date,icu_patients
 FROM `derano.CovidData.CovidDeaths`
 
 ORDER BY icu_patients DESC
+
+--Query that shows the percentage of deaths against total cases for each continent.
+
+SELECT continent,SUM(new_cases) AS total_cases, SUM(new_deaths) AS total_deaths, 
+(SUM(new_deaths)/SUM(new_cases))*100 AS PercentageofDeaths
+
+FROM `derano.CovidData.CovidDeaths`
+
+WHERE continent is not null
+
+GROUP BY continent
+
+ORDER BY PercentageofDeaths DESC
