@@ -44,3 +44,16 @@ WHERE continent is not null
 GROUP BY continent
 
 ORDER BY PercentageofDeaths DESC
+
+
+--Query to compare total cases vs total deaths vs total vaccinations for each location using JOIN
+
+SELECT vac.location, SUM(vac.new_vaccinations) AS total_vaccinations , dea.location, SUM(dea.new_cases) AS total_cases,SUM(dea.new_deaths) AS total_deaths
+
+FROM `derano.CovidData.CovidVaccinations` vac
+
+JOIN `derano.CovidData.CovidDeaths` dea
+ ON vac.location = dea.location
+ and vac.date = dea.date
+
+GROUP BY vac.location,dea.location
